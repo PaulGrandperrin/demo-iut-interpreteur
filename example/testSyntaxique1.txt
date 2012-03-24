@@ -1,0 +1,23 @@
+debut
+  ecrire(a);
+  lire(b);
+
+  tantque(c)
+    ecrire(d);
+  fintantque;
+
+  repeter
+    ecrire(caca);
+  jusqua(pipi);
+
+  a=5+a*2;
+
+  si(a)
+    ecrire(a);
+  sinonsi(b)
+    ecrire(b);
+  sinon
+    ecrire(c);a=b;
+  finsi;
+
+fin

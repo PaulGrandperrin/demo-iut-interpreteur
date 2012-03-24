@@ -1,0 +1,144 @@
+Fait:
+  Fonctionnalités principales:
+    -Vérification lexicale et syntaxique
+    -Création de l'arbre avec le pattern composite
+    -Affichage de l'arbre avec pattern visitor hiérachique
+    -Compilation vers langage C avec pattern visitor hiérarchique
+    -Interprétation avec pattern interprétation
+    -Savoir récuperer après une erreur syntaxique et continuer l'analyse
+    -Gestion de différents types avec 0 fuite de mémoire!!!
+
+  Détails supplémentaires:
+    -Opérateur Supplémentaire : modulo %
+    -Gestion priorité +/* et et/ou
+    -Affichage de l'arbre en couleur :)
+    -Gestion du Si/SinonSi/Sinon par récurance par simplification en imbrication de Si/Sinon
+		(et non pas par la méthode du Si/SinonSi qui transforme le sinon en quelque chose du genre sinonsi(1==1)).
+		"si(a) sinonsi(b) finsi" est alors transformé en "si(a) sinon si(b) finsi finsi"
+    -Entiers et Reels entièrement gérés
+    -Chaines implémentés avec quelques opérateurs (concaténation, comparaison)
+    -Commentaires court gérés
+    -TantQue/Repeter gérés par le même noeud
+    -Lire/Ecrire gérés
+    -Gérer les erreurs avec les exceptions standard
+    -Tout les problèmes possible sont gérés (à l'analyse, à l'execution, et les autres erreurs (genre fichier introuvable))
+	-Il y'a 6 types de problèmes lors de l'analyse:
+		-Caractère non valide: considéré comme simple "warning", est sauté et ne pertube pas l'analyse
+		-Si la syntaxe d'une instruction est mauvaise, alors affiche un message et on la saute.
+		-Si quelque chose n'est ni une instruction, ni un debut ou fin de block alors on affiche un message et on le saute
+		-Si une fin de block ne correspond pas au dernier debut de block , on ferme le bloque puis on affiche bien un message d'erreur
+		-S'il y a une fin de block en trop, on affiche un message puis on continue l'analyse comme si de rien n'était
+		-S'il y a des blocks non fermés, lors de l'arrivé sur le symbole "fin" l'interpréteur affichera les fin de block manquant dans l'ordre.
+	-Il y a des messages pour chaques types d'erreur à l'execution.
+
+Notes:
+	-Le typage est dynamique fort, cad le choix du type se fait à l'exécution mais que les opérations entre différents types est restreinte. Une variable peut aussi changer de type au cours de l'exécution.
+
+	-L'interpréteur sais reprendre après n'importe quel type d'erreur ( sauf si le fichier ne commence pas par
+	"debut" mais c'est un choix) et	surtout affiche le minimum de message pour une erreur ( c'est à dire 1 erreur==1 message d'erreur).
+	Ca paraît logique mais c'est pas si évident.
+	L'affichage des messages d'erreur indique la ligne et la colone du premier caractère du symbole posant problème (comme gcc).
+
+	-Le pattern visitor hiérarchique n'est pas absolument nécessaire mais permet de simplifier encore plus le code et regroupe deux visiteurs
+	normaux en un seul ( visiteur à parcour "prefixé" et visiteur à parcour "postfixé")
+
+	-La création de la table de symbole est faite dans l'analyse Syntaxique et non pas dans LecteurSymbole ( Je trouve personnelement ça plus logique, et Mr Martin approuve l'idée et ça reduit le nombre de ligne de code et donc la complexité)
+
+	-La géneration de code C ne marche qu'avec des entiers car mon language a un typage dynamique alors que le C a un typage statique. J'ai fait un programme spécial avec que des entiers pour tester ça:
+		./compilateur ../programme/premier-simple.txt premier.c
+		gcc -O3 premier.c -o premier
+		On entre un nombre puis le programme affiche 0 si c'est un premier ou un diviseur du nombre s'il ne l'est pas.
+		Une version plus ergonomique existe  ( premier.txt) mais n'est utilisable qu'avec l'interpreteur.
+
+	-Il y a 3 types d'exceptions:
+		-FatalError: Irrécupérable, stoppe le programme, exemple: Fichier source non trouvé ou ne commencant par par "debut".
+		-SyntaxeError: Erreur de syntaxe, L'analyseur syntaxique continue de lire la source mais l'arbre généré ne sera ni affiché ni executé
+		-RunTimeError: Erreur lors de l'exécution, exemple: division par 0, Comparaison de types incompatibles
+
+	-Il y a 3 exécutables:
+		-afficheArbre: affiche l'arbre syntaxique abstrait en couleur!
+		-compilateur: génère le code C
+		-interpreteur: interprète (étonant, non?)
+
+	-Je n'ai pas commenté les sources avec doxygen par manque de temps et parce que je trouve que ça rend le code illisible. Cepandent, le makefile génère quand même de la documentation (minimale)
+	à partir des sources dans le dossier "doxygen".
+
+Difficultés:
+	-Implémenter le pattern visitor et le pattern visitor hiérarchique.
+	-Faire que l'interprétation avec des variables de différents types n'ai pas de fuites de mémoire.
+	-J'ai beaucoup cherché une méthode quasi automatique pour la gestion mémoire des variables de différents types.
+	-Gérer correctement la reprise après erreur avec les exceptions.
+	-Trouver une bonne manière pour gérer le Si/SinonSi/Sinon.
+
+
+Ce que j'aurais aimé faire en plus mais que je n'ai pas pu faire à cause de tout les autres projets:
+
+  Du Gateau					-gérer les réels et les opérations entre type différent
+  Facile					-Typage explicite
+  Moyen						-Ajouter le support des fonctions
+  Moyen						-Faire un visiteur de vérification sémantique (principalement pour la vérification de type statique)
+  Facile					-Gérer le Pour
+  Peut etre Dur					-Gérer le PourMultiThreadé :D
+  Facile/long					-Gérer le Switch
+  Très Facile/ très long 			-Documenter avec Doxygen dans les sources
+  Facile/Rapide					-Gérer les commentaires long /*  */
+  Facile					-Gestion des variables locales
+
+  J'etais seul sur le projet donc j'ai pas pu faire toutes les extensions.
+  J'ai fait en priorité les étapes qui me semblaient les plus dures et les plus intéressantes.
+
+
+Syntaxe BNF:
+
+<programme> ::= debut <seqInst> fin FIN_FICHIER
+<seqInst> ::= <inst> ; { <inst> ; }
+<inst> ::= <affectation>  | <instSi> | <instTq> | <instRepeter>
+<affectation> ::= <variable> = <expression>
+<expression> ::= <terme> { <opAdd> <terme> }
+<facteur> ::= <entier>  |  <variable>  | <opUnaire> <expBool> | ( <expBool> )
+<terme> ::= <facteur> { <opMult> <facteur> }
+<opAdd> ::= + | -
+<opMult> ::= *  | / | %
+<opOu> ::= ou
+<opEt> ::= et
+<expression> ::= { <opRel> <expression> }
+<opRel> ::= == | != | < | <= | > | >=
+<instLire> ::= lire ( <variable> )
+<instEcrire ::= ecrire ( <expression> | <chaine> )
+<instSi> ::= si ( <expBool> ) <seqInst> { sinonsi ( <expBool> ) <seqInst> } [sinon seqInst] finsi
+<tantque> ::= ( expBool ) <seqInst> fintantque
+<repeter>::= <seqInst> jusqua ( <expBool> )
+
+
+Liste des léxèmes:
+debut
+fin
+(
+)
++
+-
+*
+/
+%
+;
+==
+=
+!=
+<
+>
+<=
+>=
+ou
+et
+non
+si
+sinonsi
+sinon
+finsi
+tantque
+fintantque
+repeter
+jusqua
+lire
+ecrire
+

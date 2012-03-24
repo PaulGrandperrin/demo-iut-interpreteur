@@ -1,0 +1,17 @@
+
+debut
+	ecrire("Entrez un nombre, exemple (514229)");
+	lire(nombre);
+	diviseur=2;
+	tantque(diviseur<nombre et nombre%diviseur!=0)
+		diviseur=diviseur+1;
+	fintantque;
+
+
+	si(diviseur!=nombre)
+		ecrire("Nombre non Premier");
+		ecrire("Diviseur : ");ecrire(diviseur);
+	sinon
+		ecrire("Nombre Premier");
+	finsi;
+fin

@@ -1,0 +1,6 @@
+debut
+  lire(a);
+  lire(b);
+  ecrire(a+b);
+fin
+

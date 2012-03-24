@@ -1,0 +1,9 @@
+ 
+debut
+	a=1;
+	tantque(1)
+		a=5+9*a-4+5*3;
+		ecrire(a);
+		ecrire("paul");
+	fintantque;
+fin

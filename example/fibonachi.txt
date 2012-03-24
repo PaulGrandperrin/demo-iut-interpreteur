@@ -1,0 +1,17 @@
+debut
+  ecrire("Entrez le nombre de nombre de fibonacci à calculer");
+  lire(limite);
+  nombre=1;
+  oldnombre=0;
+  oldoldnombre=0;
+  i=1;
+  ecrire(oldnombre);
+  tantque (i <=limite)
+      ecrire(nombre);
+      oldoldnombre=nombre;
+      nombre=nombre+oldnombre;
+      oldnombre=oldoldnombre;
+      i=i+1;
+  fintantque;
+fin
+

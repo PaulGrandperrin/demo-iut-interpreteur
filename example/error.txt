@@ -1,0 +1,62 @@
+#Il y'a 8 erreurs et 1 warning dans ce code, sauras-tu tous les trouver?
+#Réponse: au dos de la page ( ou en lançant l'interpreteur :)
+
+#S'il y'avais eu quelque chose avant "debut", l'interpreteur aurait
+#déclaré que l'erreur est irrécupérable ( et se serait arreté)
+#car on est même pas sur d'être dans
+#un fichier contenant des sources pour cet interpréteur.
+
+debut
+  lire(limite);
+  nombre=1;
+	caca+=2; 						#erreur
+  oldnombre=0;
+  oldoldnombre=0;
+  i=1;
+
+	si( 							#erreur
+  ecrire(oldnombre);
+  fsdhqjk							#erreur
+  tantque (i <=limite)
+      ecrire(nombre);|				#warning
+      fintantque;
+      oldoldnombre=nombre;
+	  gsdfgsdfgsd 					#erreur
+      nombre=nombre+oldnombre;
+	  gdsfjl;						#erreur
+      oldnombre=oldoldnombre;
+      i=i+1+; 						#erreur
+  fintantque;						#erreur
+		a=6+;						#erreur
+		i=0;
+
+		si							#erreur
+
+		i=0;
+
+		i+; 						#erreur
+
+finsi			#erreur
+finsi;			#erreur
+finsi			#erreur
+1=2;			#erreur
+a*=2;			#erreur
+a=2;
+
+si(a)
+si(b)
+si(c)
+si(d)
+
+
+tantque (i <=limite)
+tantque (i <=limite)
+tantque (i <=limite)
+tantque (i <=limite)
+1=2;			#erreur
+a*=2;			#erreur
+a=2;
+
+fin			#8 block non fermés
+
+

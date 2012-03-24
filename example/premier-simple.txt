@@ -1,0 +1,15 @@
+ 
+debut
+	lire(nombre);
+	diviseur=2;
+	tantque(diviseur<nombre et nombre%diviseur!=0)
+		diviseur=diviseur+1;
+	fintantque;	
+
+
+	si(diviseur!=nombre)
+		ecrire(diviseur);
+	sinon
+		ecrire(0);
+	finsi;
+fin

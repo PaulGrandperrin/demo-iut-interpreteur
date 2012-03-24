@@ -1,0 +1,12 @@
+debut
+	ecrire("(2*7+3*9=");
+	ecrire(2*7+3*9); 
+	ecrire("le resultat doit être 41");
+
+	ecrire("(2==1 ou 1==1 et 2==2)=");
+	si(2==1 ou 0==1 et 2==2)
+		ecrire("vrai");
+	sinon
+		ecrire("faux");
+	finsi;
+fin

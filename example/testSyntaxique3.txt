@@ -1,0 +1,26 @@
+# commentaire
+debut
+#moncul
+ j=456+94*((45+32-415)+(5/8));
+  i=(9==i ou j>=5); #c'est du poulet
+
+	tantque(moncul==dupoulet)
+		si(i==j)
+			ifsd=2;
+		sinonsi(j==2)
+			k=8;
+			lire(moi);
+			ecrire(toi);
+		sinonsi(45==5)
+			f=2;
+		finsi;
+		t=a;
+		si(a==a)
+			lire(a);
+		finsi;
+		
+	fintantque;#kjfqsdhfjqshdfkjqshdkjfqsdhkj
+#tyest
+#test
+fin
+

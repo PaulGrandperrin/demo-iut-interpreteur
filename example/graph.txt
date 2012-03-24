@@ -1,0 +1,29 @@
+debut
+	ligne=1;
+	temp=20000;
+  tour=0;
+	tantque(tour<=20)
+    tour=tour+1;
+		tantque(ligne<=100000000)
+			ecrire(ligne);
+			ligne=ligne*10+1;
+
+			i=0;
+			tantque(i<temp)
+				i=i+1;
+			fintantque;
+		fintantque;
+		tantque(ligne>1)
+			ecrire(ligne);
+			ligne=(ligne-1)/10;
+
+                        i=0;
+                        tantque(i<temp)
+                                i=i+1;
+                        fintantque;
+		fintantque;
+	fintantque;
+
+fin
+
+

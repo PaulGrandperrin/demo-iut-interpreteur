@@ -1,0 +1,59 @@
+#Gros programme de test
+#En gros, si celui marche, tout doit marcher
+
+debut
+	si(a)
+		ecrire(a);
+	sinonsi(b)
+		ecrire(b);
+	sinonsi(c)
+		ecrire(c);
+	sinon
+		ecrire(d);
+	finsi;
+
+	lire(a);
+	ecrire(a);
+
+	a=5+10*9+5;
+	tantque( (2+2)==4 ou a>=0 et a<=100 ou moncul==dupoulet)
+		ecrire(b);
+		a=a-1;
+	fintantque;
+
+	#petit test
+
+	a=2+3*4;
+	a=2+(3*4);
+	a=(2+3)*4;
+
+	si(a)   #on a le droit de ne rien mettre pour l'instant#
+	sinon
+		ecrire(b);
+	finsi;
+
+	si(a)
+	sinonsi(b)
+	finsi;
+
+	repeter#pas de probleme
+	jusqua(a);
+
+	#Pour finir, on fait des grosses inclusion dans tous les sens
+	
+	si(a)
+		tantque(b)
+			si(c)
+			sinonsi(d)
+				repeter
+					ecrire(e);
+				jusqua(f);
+			finsi;
+			ecrire(g);
+		fintantque;
+	sinon
+		lire(h);
+	finsi;	
+		
+fin
+
